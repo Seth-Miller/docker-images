@@ -126,7 +126,7 @@ else
 fi
 echo "=========================="
 echo "DOCKER info:"
-docker info
+podman info
 echo "=========================="
 
 # Proxy settings
@@ -159,7 +159,7 @@ fi
 if [ ${BASE_ONLY} -eq 1 ]; then
   echo "Building base stage image '${IMAGE_NAME}' ..."
   # BUILD THE BASE STAGE IMAGE (replace all environment variables)
-  docker build --force-rm=true \
+  podman build --force-rm=true \
         --no-cache=true ${DOCKEROPS} ${PROXY_SETTINGS} --build-arg VERSION="${VERSION}" --target base \
         -t "${IMAGE_NAME}" -f "${VERSION}"/Containerfile . || {
     echo ""
@@ -167,7 +167,7 @@ if [ ${BASE_ONLY} -eq 1 ]; then
     exit 1
   }
   # Remove dangling images (intermitten images with tag <none>)
-  yes | docker image prune > /dev/null || true
+  yes | podman image prune > /dev/null || true
   exit
 fi
 
@@ -179,7 +179,7 @@ echo "Building image '$IMAGE_NAME' ..."
 # BUILD THE IMAGE (replace all environment variables)
 BUILD_START=$(date '+%s')
 # shellcheck disable=SC2086
-docker build --force-rm=true --no-cache=true ${DOCKEROPS} ${PROXY_SETTINGS} --build-arg VERSION="${VERSION}" --target final -t ${IMAGE_NAME} -f "${VERSION}"/Containerfile . || {
+podman build --force-rm=true --no-cache=true ${DOCKEROPS} ${PROXY_SETTINGS} --build-arg VERSION="${VERSION}" --target final -t ${IMAGE_NAME} -f "${VERSION}"/Containerfile . || {
   echo "There was an error building the image."
   exit 1
 }
