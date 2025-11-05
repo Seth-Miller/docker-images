@@ -179,7 +179,8 @@ echo "Building image '$IMAGE_NAME' ..."
 # BUILD THE IMAGE (replace all environment variables)
 BUILD_START=$(date '+%s')
 # shellcheck disable=SC2086
-podman build --force-rm=true --no-cache=true ${DOCKEROPS} ${PROXY_SETTINGS} --build-arg VERSION="${VERSION}" --target final -t ${IMAGE_NAME} -f "${VERSION}"/Containerfile . || {
+#podman build --force-rm=true --no-cache=true ${DOCKEROPS} ${PROXY_SETTINGS} --build-arg VERSION="${VERSION}" --target final -t ${IMAGE_NAME} -f "${VERSION}"/Containerfile . || {
+echo "podman build --force-rm=true --no-cache=true ${DOCKEROPS} ${PROXY_SETTINGS} --build-arg VERSION=\"${VERSION}\" --target final -t ${IMAGE_NAME} -f \"${VERSION}\"/Containerfile ." || {
   echo "There was an error building the image."
   exit 1
 }

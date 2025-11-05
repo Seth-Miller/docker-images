@@ -17,5 +17,5 @@
 mkdir /asmdisks && \
 mkdir /responsefiles  && \
 chmod ug+x /opt/scripts/startup/*.sh && \
-dnf -y install oracle-database-preinstall-19c systemd vim-minimal passwd openssh-server hostname xterm xhost vi policycoreutils-python-utils lsof openssl  net-tools which zip unzip tar sudo && \
+dnf -y install oracle-database-preinstall-19c systemd vim-minimal passwd openssh-server hostname xterm xhost vi policycoreutils-python-utils lsof openssl net-tools which zip unzip tar sudo python3 expect && \
 dnf clean all

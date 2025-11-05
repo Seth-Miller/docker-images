@@ -1,0 +1,22 @@
+#############################################
+# -------------------------------------------
+# Start new layer for grid & database runtime
+# -------------------------------------------
+#############################################
+FROM oracle/database-rac:19.3.0 AS final
+ENV GRID_BASE=/u01/app/grid \
+    GRID_HOME=/u01/app/19c/grid \
+    DB_BASE=/u01/app/oracle \
+    DB_HOME=/u01/app/oracle/product/19c/dbhome_1
+RUN dnf -y install python3 expect
+
+USER root
+VOLUME ["/common_scripts"]
+WORKDIR $WORKDIR
+
+HEALTHCHECK --interval=2m --start-period=30m \
+   CMD "$SCRIPT_DIR/scripts/main.py --checkracinst=true" >/dev/null || exit 1
+
+# Define default command to start Oracle Grid and RAC Database setup.
+# hadolint ignore=DL3025
+ENTRYPOINT /usr/bin/$INITSH
