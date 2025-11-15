@@ -686,7 +686,7 @@ class OraGIProv:
          self.install_cvuqdisk(node)
 
    def install_cvuqdisk(self,node):
-      rpm_directory = "/u01/app/23c/grid/cv/rpm"
+      rpm_directory = "/u01/app/19c/grid/cv/rpm"
       giuser,gihome,obase,invloc=self.ocommon.get_gi_params()
       try:
          # Construct the rpm command using wildcard for version

@@ -422,8 +422,8 @@ class OraSetupEnv:
       oraversion=self.ocommon.get_rsp_version("INSTALL",None)
       version=oraversion.split(".",1)[0].strip()
       if int(version) < 23:
-         oracleDBConfigFile="/etc/security/limits.d/oracle-database-preinstall-23c.conf"
-         gridDBConfigFile="/etc/security/limits.d/grid-database-preinstall-23c.conf"
+         oracleDBConfigFile="/etc/security/limits.d/oracle-database-preinstall-19c.conf"
+         gridDBConfigFile="/etc/security/limits.d/grid-database-preinstall-19c.conf"
       else:
          oracleDBConfigFile="/etc/security/limits.d/oracle-database-preinstall-23ai.conf"
          gridDBConfigFile="/etc/security/limits.d/grid-database-preinstall-23ai.conf"
